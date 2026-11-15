@@ -1,0 +1,26 @@
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    li::marker {
+        color: var(--text);
+    }
+}
+
+.text-title-error {
+    color: var(--error-color);
+}
+
+.form-wrapper {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10px;
+    gap: 20px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
