@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import type { NewPost, Post, User } from "./types";
 
 import SearchBar from "./components/SearchBar";
@@ -15,6 +15,14 @@ const SafePostForm = withErrorBoundary(PostForm);
 function App() {
   const [query, setQuery] = useState("");
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+  const [createdPosts, setCreatedPosts] = useState<Post[]>([])
+
+  useEffect(() => {
+    const reset = async () => {
+      setCreatedPosts([])
+    }
+    reset()
+  }, [selectedUserId])
 
   const {
     data: users,
@@ -46,10 +54,11 @@ function App() {
   const handleCreate = (newPost: NewPost) => {
     createPost("/posts", newPost).then((created) => {
       if (created) {
-        setSelectedUserId(created.userId);
+        setSelectedUserId(created.userId)
+        setCreatedPosts((prev) => [created, ...prev])
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="main-app-container">
@@ -82,7 +91,7 @@ function App() {
               label="Loading posts"
               onRetry={reloadPosts}
             />
-            <SafePostList posts={posts ?? []} />
+            <SafePostList posts={[...createdPosts, ...(posts ?? [])]} />
             <hr />
             <SafePostForm
               userId={selectedUserId}
