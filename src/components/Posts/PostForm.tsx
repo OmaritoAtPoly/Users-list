@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import type { NewPost } from "../types";
+import type { NewPost } from "../../types";
+
 
 export interface PostFormProps {
   userId: number;

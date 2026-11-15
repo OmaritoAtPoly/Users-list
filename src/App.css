@@ -1,4 +1,30 @@
 .main-app-container {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+
+.app-aside {
+  flex: 0;
+  width: 320px;
+  padding: 20px;
+  border-right: 1px solid var(--aside-border);
+}
+
+.app-main {
+  max-width: 900px;
+}
+
+.app-empty {
+  margin-top: 40px;
+}
+
+.app-error {
+  color: var(--error-color);
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.post-wrapper-container {
+  display: flex;
 }
