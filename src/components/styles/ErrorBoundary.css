@@ -1,0 +1,32 @@
+.error-boundary {
+  padding: 20px;
+  border: 1px solid var(--error-color);
+  background: var(--error-bg);
+  color: var(--error-color);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.error-boundary p {
+  margin: 0 0 12px 0;
+}
+
+.error-boundary-message {
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.error-boundary-retry {
+  margin-top: 12px;
+  padding: 6px 12px;
+  background: var(--error-color);
+  color: var(--error-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.error-boundary-retry:hover {
+  opacity: 0.9;
+}
