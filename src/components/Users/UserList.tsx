@@ -1,4 +1,5 @@
 import type { User } from "../../types";
+import "../styles/Users.css";
 
 export interface UserListProps {
   users: User[];
@@ -16,7 +17,7 @@ export const UserList = ({ users, onSelect, selectedId }: UserListProps) => {
   };
 
   return (
-    <ul>
+    <ul className="user-list-container">
       {users.map((user) => (
         <li key={user.id}>
           <button

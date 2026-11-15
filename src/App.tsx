@@ -20,6 +20,7 @@ function App() {
     data: users,
     loading: usersLoading,
     error: usersError,
+    reload: reloadUsers,
   } = useGet<User[]>("/users");
 
   const postsUrl = selectedUserId ? `/posts?userId=${selectedUserId}` : "";
@@ -27,6 +28,7 @@ function App() {
     data: posts,
     loading: postsLoading,
     error: postsError,
+    reload: reloadPosts,
   } = useGet<Post[]>(postsUrl);
 
   const {
@@ -62,6 +64,7 @@ function App() {
           loading={usersLoading}
           error={usersError}
           label="Loading users"
+          onRetry={reloadUsers}
         />
         <UserList
           users={filteredUsers}
@@ -72,26 +75,22 @@ function App() {
 
       <main className="app-main">
         {selectedUserId ? (
-          <>
-            <h2>Posts</h2>
+          <div className="post-wrapper-container">
             <Status
               loading={postsLoading || creating}
               error={postsError ?? createError}
               label="Loading posts"
-              onRetry={() => {
-                // no-op placeholder; retry handled per-request
-              }}
+              onRetry={reloadPosts}
             />
             <SafePostList posts={posts ?? []} />
             <hr />
-            <h3>Create new post</h3>
             <SafePostForm
               userId={selectedUserId}
               onCreate={handleCreate}
               loading={creating}
             />
             {createError && <p className="app-error">{createError}</p>}
-          </>
+          </div>
         ) : (
           <p className="app-empty">Select a user to see their posts.</p>
         )}

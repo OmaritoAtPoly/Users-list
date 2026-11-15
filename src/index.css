@@ -16,6 +16,8 @@
    --aside-border: #e5e4e7;
    --text-muted: #6b6375;
    --error-color: #d2d954;
+   --error-bg: #fef2f2;
+   --error-text: #fff;
  }
 
  body {

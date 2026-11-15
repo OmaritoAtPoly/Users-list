@@ -1,4 +1,5 @@
 import type { Post } from "../../types";
+import "../styles/PostList.css";
 
 export interface PostListProps {
   posts: Post[];
@@ -10,7 +11,7 @@ export const PostList = ({ posts }: PostListProps) => {
   }
 
   return (
-    <ul>
+    <ul className="posts-container">
       {posts.map((post) => (
         <li key={post.id}>
           <h3>{post.title}</h3>

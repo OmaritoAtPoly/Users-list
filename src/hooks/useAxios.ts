@@ -5,7 +5,7 @@ import { toMessage } from "./utils";
 export const useGet = <T>(url: string) => {
   const [state, setState] = useState<RequestState<T>>({
     data: null,
-    loading: true,
+    loading: false,
     error: null,
   });
 
@@ -13,6 +13,10 @@ export const useGet = <T>(url: string) => {
     let active = true;
 
     const load = async () => {
+      if (!url) {
+        if (active) setState({ data: null, loading: false, error: null });
+        return;
+      }
       setState((prev) => ({ ...prev, loading: true, error: null }));
       try {
         const { data } = await http.get<T>(url);
@@ -34,6 +38,7 @@ export const useGet = <T>(url: string) => {
   }, [url]);
 
   const reload = useCallback(async () => {
+    if (!url) return;
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
       const { data } = await http.get<T>(url);
